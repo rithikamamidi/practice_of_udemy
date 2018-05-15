@@ -39,46 +39,54 @@ public class Fighting {
         int yourLife=s.nextInt();
         
         Random generator=new Random();
-        boolean attacker=generator.nextBoolean();
-        if(attacker)
-        {
-            System.out.println("You will attack");
-            int dice=generator.nextInt(6)+1+generator.nextInt(6)+1;
-            int attackValue=yourAttack+dice;
-            System.out.println("Dice values:"+dice);
-            System.out.println("Attack value:"+attackValue);
-            if(attackValue>monsterDefense)
+        do{
+            boolean attacker=generator.nextBoolean();
+            if(attacker)
             {
-                System.out.println("Attack successful!");
-                monsterLife=monsterLife-yourDamage;
-                System.out.println("Remaining monster's life:"+monsterLife);
-                
+                System.out.println("You will attack");
+                int dice=generator.nextInt(6)+1+generator.nextInt(6)+1;
+                int attackValue=yourAttack+dice;
+                System.out.println("Dice values:"+dice);
+                System.out.println("Attack value:"+attackValue);
+                if(attackValue>monsterDefense)
+                {
+                    System.out.println("Attack successful!");
+                    monsterLife=monsterLife-yourDamage;
+                    System.out.println("Remaining monster's life:"+monsterLife);
+
+                }
+                else
+                {
+                    System.out.println("Attack failed!");
+                }         
+
             }
             else
             {
-                System.out.println("Attack failed!");
-            }         
-            
-        }
+                System.out.println("Monster will attack");
+                int dice=generator.nextInt(6)+1+generator.nextInt(6)+1;
+                int attackValue=yourAttack+dice;
+                System.out.println("Dice values:"+dice);
+                System.out.println("Attack value:"+attackValue);
+                if(attackValue>yourDefense)
+                {
+                    System.out.println("Attack successful!");
+                    yourLife=yourLife-monsterDamage;
+                    System.out.println("Your remaining life:"+yourLife);
+
+                }
+                else
+                {
+                    System.out.println("Attack failed!");
+                }         
+            }
+            System.out.println("press Enter to continue:");
+            s.nextLine();
+        }while(monsterLife>0 && yourLife>0);
+        if(monsterLife>yourLife)
+            System.out.println("Monster won");
         else
-        {
-            System.out.println("Monster will attack");
-            int dice=generator.nextInt(6)+1+generator.nextInt(6)+1;
-            int attackValue=yourAttack+dice;
-            System.out.println("Dice values:"+dice);
-            System.out.println("Attack value:"+attackValue);
-            if(attackValue>yourDefense)
-            {
-                System.out.println("Attack successful!");
-                yourLife=yourLife-monsterDamage;
-                System.out.println("Your remaining life:"+yourLife);
-                
-            }
-            else
-            {
-                System.out.println("Attack failed!");
-            }         
-        }
+            System.out.println("You won");
         
             
         
@@ -88,5 +96,6 @@ public class Fighting {
         
         
     }
+        
     
 }
